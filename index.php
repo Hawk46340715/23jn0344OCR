@@ -17,6 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_FILES['receipts']['tmp_nam
     }
 
     // OCR.pyを実行
+$output = shell_exec('python3 --version 2>&1');
+echo "<pre>$output</pre>";
+
+
     $output = shell_exec('python OCR.py ' . implode(' ', $file_paths) . ' 2>&1');
     file_put_contents('php_error.log', $output);
 
