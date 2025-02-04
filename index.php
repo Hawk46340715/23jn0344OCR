@@ -2,7 +2,7 @@
 // アップロード処理と結果表示、CSVダウンロードを一つのファイルに統合
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_FILES['receipts']['tmp_name'][0])) {
     // アップロードディレクトリ
-    $upload_dir = 'uploads/';
+    $upload_dir = __DIR__ . '/uploads/';
     if (!is_dir($upload_dir)) {
         mkdir($upload_dir, 0777, true);
     }
