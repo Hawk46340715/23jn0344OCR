@@ -5,10 +5,8 @@ import traceback
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.formrecognizer import DocumentAnalysisClient
 
-import os
-
-endpoint = os.getenv("https://receipt23jn0344.cognitiveservices.azure.com/")
-key = os.getenv("Cjtruihe35VAHUmMTBvgN3ONukMrbBBlJYiKNBLJUKCQ56t3E45LJQQJ99BAACi0881XJ3w3AAALACOGkCCw")
+endpoint = "https://receipt23jn0344.cognitiveservices.azure.com/"
+key ="Cjtruihe35VAHUmMTBvgN3ONukMrbBBlJYiKNBLJUKCQ56t3E45LJQQJ99BAACi0881XJ3w3AAALACOGkCCw"
 
 document_analysis_client = DocumentAnalysisClient(
     endpoint=endpoint, credential=AzureKeyCredential(key)
