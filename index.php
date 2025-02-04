@@ -21,9 +21,9 @@ if (!file_exists($python_script)) {
     die("<p style='color: red;'>エラー: OCR解析スクリプトが見つかりません。管理者に連絡してください。</p>");
 }
 
-// OCR.pyを実行
-// OCR.pyを実行（python3を使う場合）
+// Python3を使用してOCRスクリプトを実行
 $output = shell_exec('python3 ' . escapeshellarg($python_script) . ' ' . implode(' ', array_map('escapeshellarg', $file_paths)) . ' 2>&1');
+
 
 if ($output === null) {
     die("<p style='color: red;'>エラー: OCR解析の実行中に問題が発生しました。</p>");
