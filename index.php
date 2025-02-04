@@ -21,7 +21,7 @@ if (!file_exists($python_script)) {
     die("<p style='color: red;'>エラー: OCR解析スクリプトが見つかりません。管理者に連絡してください。</p>");
 }
 
-$output = shell_exec('python3 ' . escapeshellarg($python_script) . ' ' . implode(' ', array_map('escapeshellarg', $file_paths)) . ' 2>&1');
+$output = shell_exec('python ' . escapeshellarg($python_script) . ' ' . implode(' ', array_map('escapeshellarg', $file_paths)) . ' 2>&1');
 
 
 
