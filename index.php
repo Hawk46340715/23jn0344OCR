@@ -28,14 +28,17 @@ if ($output === null) {
     die("<p style='color: red;'>エラー: OCR解析の実行中に問題が発生しました。</p>");
 }
 
-// ログ出力
-file_put_contents('php_error.log', $output);
+
+// 出力内容をログに記録
+file_put_contents('ocr_output.log', $output);
 
 // JSONデコード
 $results = json_decode($output, true);
 if ($results === null) {
-    die("<p style='color: red;'>エラー: OCR解析結果を処理できませんでした。</p>");
+    // 出力内容が無効な場合にエラーメッセージを表示
+    die("<p style='color: red;'>エラー: OCR解析結果を処理できませんでした。出力内容: <pre>{$output}</pre></p>");
 }
+
     
     // OCR.pyを実行
    $output = shell_exec('python OCR.py ' . implode(' ', $file_paths) . ' 2>&1');
