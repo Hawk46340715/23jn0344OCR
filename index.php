@@ -15,7 +15,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_FILES['receipts']['tmp_nam
         move_uploaded_file($tmp_name, $file_path);
         $file_paths[] = $file_path;
     }
+// ファイルがあるか確かめる
+$python_script = 'OCR.py';
+if (!file_exists($python_script)) {
+    die("<p style='color: red;'>エラー: OCR解析スクリプトが見つかりません。管理者に連絡してください。</p>");
+}
 
+// OCR.pyを実行
+$output = shell_exec('python ' . escapeshellarg($python_script) . ' ' . implode(' ', array_map('escapeshellarg', $file_paths)) . ' 2>&1');
+
+if ($output === null) {
+    die("<p style='color: red;'>エラー: OCR解析の実行中に問題が発生しました。</p>");
+}
+
+// ログ出力
+file_put_contents('php_error.log', $output);
+
+// JSONデコード
+$results = json_decode($output, true);
+if ($results === null) {
+    die("<p style='color: red;'>エラー: OCR解析結果を処理できませんでした。</p>");
+}
+    
     // OCR.pyを実行
    $output = shell_exec('python OCR.py ' . implode(' ', $file_paths) . ' 2>&1');
     file_put_contents('php_error.log', $output);
