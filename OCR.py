@@ -2,7 +2,8 @@ import sys
 import json
 import csv
 import traceback
-
+from azure.core.credentials import AzureKeyCredential 
+from azure.ai.formrecognizer import DocumentAnalysisClient
 
 endpoint = "https://receipt23jn0344.cognitiveservices.azure.com/"
 key ="Cjtruihe35VAHUmMTBvgN3ONukMrbBBlJYiKNBLJUKCQ56t3E45LJQQJ99BAACi0881XJ3w3AAALACOGkCCw"
