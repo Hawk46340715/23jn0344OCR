@@ -21,7 +21,7 @@ $output = shell_exec('python3 --version 2>&1');
 echo "<pre>$output</pre>";
 
 
-    $output = shell_exec('python OCR.py ' . implode(' ', $file_paths) . ' 2>&1');
+    $output = shell_exec('/usr/bin/python3 /home/site/wwwroot/OCR.py ' . implode(' ', $file_paths) . ' 2>&1');
     file_put_contents('php_error.log', $output);
 
     $results = json_decode($output, true); // JSON形式で結果を受け取る
